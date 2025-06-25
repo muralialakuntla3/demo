@@ -1,0 +1,20 @@
+name: docker image build
+on: workflow_dispatch
+jobs:
+  linting: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Linting Action
+        uses: ryanclark/lint-action@v1.15.0
+        with: 
+          continue_on_error: true
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: docker image build
+        run: |
+          docker build -t myapp .
+          docker container ls -a
+        
+      
