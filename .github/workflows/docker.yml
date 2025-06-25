@@ -4,17 +4,21 @@ jobs:
   linting: 
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v4.2.2
       - name: Linting Action
-        uses: ryanclark/lint-action@v1.15.0
+        uses: codebeltnet/codeql-scan@v1.0.0
         with: 
-          continue_on_error: true
+          languages: python
 
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v4.2.2
       - name: docker image build
         run: |
           docker build -t myapp .
-          docker container ls -a
+          docker images ls 
         
       
